@@ -1,8 +1,8 @@
 ## 首页
 
->! _base-url_ = 'https://shop.yangxiansheng.top/heyushuo'
+> ! _base-url_ = 'https://shop.yangxiansheng.top/heyushuo'
 
->! 都是GET请求
+> ! 都是GET请求
 
 **获取首页数据**
 
@@ -12,7 +12,6 @@
 **请求参数**
 | 参数名称        | 是否必须           | 类型  | 说明  |
 | ------------- |:-------------:| -----:| ----:|
-
 
 **返回值**
 | 参数名称                  | 类型  | 说明  |
@@ -27,10 +26,10 @@
 | newCategoryList (查询类别对应的子类别)    | Array | 返回值 |
 
 **示例**
+
 - 请求：[https://shop.yangxiansheng.top/heyushuo/index/index](https://shop.yangxiansheng.top/heyushuo/index/index)
 - 响应：
-![](https://image.yangxiansheng.top/img/QQ截图20200225230721.png?imagelist)
-
+  ![](https://image.yangxiansheng.top/img/QQ截图20200225230721.png?imagelist)
 
 ### 品牌制造商直供的列表
 
@@ -39,9 +38,8 @@
 
 **请求参数**
 
-| 参数名称        | 是否必须           | 类型  | 说明  |
-| ------------- |:-------------:| -----:| ----:|
-
+| 参数名称 | 是否必须 | 类型  | 说明  |
+| ---- |:----:| ---:| ---:|
 
 **返回值**
 | 参数名称                  | 类型  | 说明  |
@@ -52,30 +50,30 @@
 | app_list_pic_url()  | String | 返回值 |
 
 **示例**
+
 - 请求：[https://shop.yangxiansheng.top/heyushuo/brand/listaction](https://shop.yangxiansheng.top/heyushuo/brand/listaction)
 - 响应：
-![](https://image.yangxiansheng.top/img/QQ截图20200225230721.png?imagelist)
-
+  ![](https://image.yangxiansheng.top/img/QQ截图20200225230721.png?imagelist)
 
 ### 品牌制造商直供的列表详情数据
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/brand/detailaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    无   |
-
+| 参数名 | 必选  | 类型  | 说明  |
+|:--- |:--- |:--- | --- |
+| id  | 是   | int | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": {
     "id": 1001000,
@@ -702,25 +700,21 @@
     }
   ]
 }
-
 ```
-
-
 
 ### 商品分类列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/category/indexaction `
-  
+
 **请求方式：**
+
 - GET 
-
-
 
 **返回示例**
 
-``` json
+```json
 {
   "categoryList": [
     {
@@ -878,29 +872,27 @@
     }
   ]
 }
-
 ```
-
 
 ### 商品分类子分类
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/category/currentaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    无   |
-
+| 参数名 | 必选  | 类型  | 说明  |
+|:--- |:--- |:--- | --- |
+| id  | 是   | int | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": {
     "currentOne": {
@@ -1089,32 +1081,32 @@
           "level": "L2",
           "type": 0,
           "front_name": "夏凉床品，舒适一夏"
-    
+
       ]
     }
   }
 }
-
 ```
 
 ### 商品子分类导航
 
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/category/categoryNav `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |  子分类id   |
-
+| 参数名 | 必选  | 类型  | 说明    |
+|:--- |:--- |:--- | ----- |
+| id  | 是   | int | 子分类id |
 
 **返回示例**
 
-``` json
+```json
 {
   "navData": [
     {
@@ -1306,28 +1298,27 @@
     "front_name": "守护你的睡眠时光"
   }
 }
-
 ```
 
 ### 获取分类商品列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/goods/goodsList `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|categoryId |  是  |    int   |    分类id   |
-
+| 参数名        | 必选  | 类型  | 说明   |
+|:---------- |:--- |:--- | ---- |
+| categoryId | 是   | int | 分类id |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": [
     {
@@ -2597,29 +2588,28 @@
     "front_name": "各种风格软装装点你的家"
   }
 }
-
 ```
 
 ### 获取商品详情数据
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/goods/detailaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    商品列表或搜索结果里的id号  |
-|openId |  是  |    string   |    无   |
-
+| 参数名    | 必选  | 类型     | 说明             |
+|:------ |:--- |:------ | -------------- |
+| id     | 是   | int    | 商品列表或搜索结果里的id号 |
+| openId | 是   | string | 无              |
 
 **返回示例**
 
-``` json
+```json
 {
   "info": {
     "id": 1009024,
@@ -3997,28 +3987,27 @@
   "collected": false,
   "allnumber": 2
 }
-
 ```
 
 ### 获取专题列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/topic/listaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|page |  是  |    int   |    当前请求页数  |
-
+| 参数名  | 必选  | 类型  | 说明     |
+|:---- |:--- |:--- | ------ |
+| page | 是   | int | 当前请求页数 |
 
 **返回示例**
 
-``` json
+```json
 {
   "page": "1",
   "total": 4,
@@ -4060,28 +4049,27 @@
     }
   ]
 }
-
 ```
 
 ### 专题详情加下方四个专题推荐
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/topic/detailaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    专题id  |
-
+| 参数名 | 必选  | 类型  | 说明   |
+|:--- |:--- |:--- | ---- |
+| id  | 是   | int | 专题id |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": {
     "id": 314,
@@ -4130,28 +4118,27 @@
     }
   ]
 }
-
 ```
 
 ### 搜索关键词和搜索历史接口
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/search/indexaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|openId |  是  |    string   |    微信唯一识别   |
-
+| 参数名    | 必选  | 类型     | 说明     |
+|:------ |:--- |:------ | ------ |
+| openId | 是   | string | 微信唯一识别 |
 
 **返回示例**
 
-``` json
+```json
 {
   "defaultKeyword": {
     "keyword": "520元礼包抢先领",
@@ -4195,28 +4182,27 @@
   ],
   "historyData": []
 }
-
 ```
 
 ### 关键词搜索提示
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/search/helperaction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|keyword |  是  |    string   |    搜索关键词   |
-
+| 参数名     | 必选  | 类型     | 说明    |
+|:------- |:--- |:------ | ----- |
+| keyword | 是   | string | 搜索关键词 |
 
 **返回示例**
 
-``` json
+```json
 {
   "keywords": [
     {
@@ -4233,106 +4219,102 @@
     }
   ]
 }
-
 ```
 
 ### 搜索记录添加到数据库
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/search/addhistoryaction `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|keyword |  是  |    String  |   关键词    |
-|openId |  是  |    string   |    无   |
-
+| 参数名     | 必选  | 类型     | 说明  |
+|:------- |:--- |:------ | --- |
+| keyword | 是   | String | 关键词 |
+| openId  | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": "success"
 }
-
 ```
 
 ### 清空搜索记录
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/search/clearhistoryAction `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-| |  是  |    string   |    无   |
-|openId |  是  |    string   |    无   |
-
+| 参数名    | 必选  | 类型     | 说明  |
+|:------ |:--- |:------ | --- |
+|        | 是   | string | 无   |
+| openId | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": "清除成功"
 }
-
 ```
 
 ### 添加收藏或者移除收藏(相同的参数请求第二次代表移除收藏)
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/collect/addcollect `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|goodsId |  是  |    int   |    商品ID  |
-|openId |  是  |    string   |    无   |
-
+| 参数名     | 必选  | 类型     | 说明   |
+|:------- |:--- |:------ | ---- |
+| goodsId | 是   | int    | 商品ID |
+| openId  | 是   | string | 无    |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": "success"
 }
-
 ```
 
 ### 获取收藏列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/collect/listAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|openId |  是  |    string   |    无   |
-
+| 参数名    | 必选  | 类型     | 说明  |
+|:------ |:--- |:------ | --- |
+| openId | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "collectGoodsList": [
     {
@@ -4344,81 +4326,77 @@
     }
   ]
 }
-
 ```
-
 
 ### 添加商品进入购物车
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/cart/addCart `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|goodsId |  是  |    int   |    商品列表   |
-|number |  是  |    int   |    商品数量  |
-|openId |  是  |    string   |    无   |
-
+| 参数名     | 必选  | 类型     | 说明   |
+|:------- |:--- |:------ | ---- |
+| goodsId | 是   | int    | 商品列表 |
+| number  | 是   | int    | 商品数量 |
+| openId  | 是   | string | 无    |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": "success"
 }
-
 ```
 
 ### 删除购物车商品
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/cart/deleteAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    商品在购物车列表id   |
-
+| 参数名 | 必选  | 类型  | 说明         |
+|:--- |:--- |:--- | ---------- |
+| id  | 是   | int | 商品在购物车列表id |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": true
 }
-
 ```
 
 ### 购物车商品列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/cart/cartList `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|openId |  是  |    string   |    无   |
-
+| 参数名    | 必选  | 类型     | 说明  |
+|:------ |:--- |:------ | --- |
+| openId | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": [
     {
@@ -4432,58 +4410,54 @@
     }
   ]
 }
-
 ```
-
 
 ### 提交订单
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/order/submitAction `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|allPrise |  是  |    int   |    提交的商品总价   |
-|goodsId |  是  |    int   |    商品id   |
-|openId |  是  |    string   |    无   |
-
+| 参数名      | 必选  | 类型     | 说明      |
+|:-------- |:--- |:------ | ------- |
+| allPrise | 是   | int    | 提交的商品总价 |
+| goodsId  | 是   | int    | 商品id    |
+| openId   | 是   | string | 无       |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": true
 }
-
 ```
-
 
 ### 获取订单详情
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/order/detailAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|addressId |  是  |    string   |    无   |
-|openId |  是  |    string   |    无   |
-
+| 参数名       | 必选  | 类型     | 说明  |
+|:--------- |:--- |:------ | --- |
+| addressId | 是   | string | 无   |
+| openId    | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "allPrise": "758",
   "goodsList": [
@@ -4507,59 +4481,57 @@
     "address_detail": "斯柯达副科级上刊登了附近路口"
   }
 }
-
 ```
 
 ### 保存修改后的收货地址
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/address/saveAction `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|openId |  是  |    string   |     唯一标识 |
-|address |  是  |    string   |    省市区   |
-|addressId |  是  |    int   |   地址id    |
-|checked |  是  |    string   |   是否是默认地址 （1）  |
-|detailadress |  是  |    string   |    详细地址  |
-|telNumber |  是  |    int   |   电话   |
-|userName |  是  |    string   |    用户名   |
-
+| 参数名          | 必选  | 类型     | 说明          |
+|:------------ |:--- |:------ | ----------- |
+| openId       | 是   | string | 唯一标识        |
+| address      | 是   | string | 省市区         |
+| addressId    | 是   | int    | 地址id        |
+| checked      | 是   | string | 是否是默认地址 （1） |
+| detailadress | 是   | string | 详细地址        |
+| telNumber    | 是   | int    | 电话          |
+| userName     | 是   | string | 用户名         |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": true
 }
-
 ```
 
 ### 获取收货地址列表
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/address/getListAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|openId |  是  |    string   |    无   |
-
+| 参数名    | 必选  | 类型     | 说明  |
+|:------ |:--- |:------ | --- |
+| openId | 是   | string | 无   |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": [
     {
@@ -4582,28 +4554,27 @@
     }
   ]
 }
-
 ```
 
 ### 获取收货地址详情数据
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/address/detailAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    地址id   |
-
+| 参数名 | 必选  | 类型  | 说明   |
+|:--- |:--- |:--- | ---- |
+| id  | 是   | int | 地址id |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": {
     "id": 33,
@@ -4615,82 +4586,55 @@
     "address_detail": "斯柯达副科级上刊登了附近路口"
   }
 }
-
 ```
 
 ### 删除收货地址
 
-
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/address/deleteAction `
-  
+
 **请求方式：**
+
 - GET 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|id |  是  |    int   |    收货地址id   |
-
+| 参数名 | 必选  | 类型  | 说明     |
+|:--- |:--- |:--- | ------ |
+| id  | 是   | int | 收货地址id |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": true
 }
-
 ```
 
 ### 意见反馈
 
 **请求URL：** 
+
 - ` https://shop.yangxiansheng.top/heyushuo/feedback/submitAction `
-  
+
 **请求方式：**
+
 - POST 
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|content |  是  |    int   |    无   |
-|openId |  是  |    string   |    无   |
-|name |  是  |    string   |    微信用户名  |
-|phone |  是  |    int   |    电话   |
-
+| 参数名     | 必选  | 类型     | 说明    |
+|:------- |:--- |:------ | ----- |
+| content | 是   | int    | 无     |
+| openId  | 是   | string | 无     |
+| name    | 是   | string | 微信用户名 |
+| phone   | 是   | int    | 电话    |
 
 **返回示例**
 
-``` json
+```json
 {
   "data": true
 }
-
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
