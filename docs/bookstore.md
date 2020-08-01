@@ -459,8 +459,6 @@ export function addLink(href) {
 ```
 
 <h3>下一章</h3>
-
-
 ```js
 nextSection(){
     // this.Currentbook.spine 对应章节的信息对象
@@ -608,7 +606,7 @@ function flaten(array){
 
 //递归优化 遍历深层树
 function flaten(array){
-    return [].concat(arr.map(item=>[].concat(item,...flaten(item.subitem))))
+    return [].concat(...arr.map(item=>[].concat(item,...flaten(item.subitem))))
 }
 ```
 

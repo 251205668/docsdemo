@@ -10,10 +10,12 @@
 `GET /index/index`
 
 **请求参数**
+
 | 参数名称        | 是否必须           | 类型  | 说明  |
 | ------------- |:-------------:| -----:| ----:|
 
 **返回值**
+
 | 参数名称                  | 类型  | 说明  |
 | ------------- | ----:| ---:|
 | banner(轮播)      | Array | 返回值 |
@@ -42,6 +44,7 @@
 | ---- |:----:| ---:| ---:|
 
 **返回值**
+
 | 参数名称                  | 类型  | 说明  |
 | ------------- | ----:| ---:|
 | id   | Number | 返回值 |
@@ -750,126 +753,6 @@
       "level": "L1",
       "type": 0,
       "front_name": "爱，囿于厨房"
-    },
-    {
-      "id": 1005002,
-      "name": "饮食",
-      "keywords": "",
-      "front_desc": "好吃，高颜值美食",
-      "parent_id": 0,
-      "sort_order": 9,
-      "show_index": 8,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/dd6cc8a7e996936768db5634f12447ed.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/c9280327a3fd2374c000f6bf52dff6eb.png",
-      "img_url": "//nos.netease.com/yanxuan/9a29ef4f41c305a12e1459f12abd290f.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/fb670ff3511182833e5b035275e4ac09.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "好吃，高颜值美食"
-    },
-    {
-      "id": 1008000,
-      "name": "配件",
-      "keywords": "",
-      "front_desc": "配角，亦是主角",
-      "parent_id": 0,
-      "sort_order": 4,
-      "show_index": 3,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/cad5aba2bc52d3b8adfd0232c9814de2.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/11abb11c4cfdee59abfb6d16caca4c6a.png",
-      "img_url": "//nos.netease.com/yanxuan/935f1ab7dcfeb4bbd4a5da9935161aaf.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/02f9a44d05c05c0dd439a5eb674570a2.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "配角，亦是主角"
-    },
-    {
-      "id": 1010000,
-      "name": "服装",
-      "keywords": "",
-      "front_desc": "贴身的，要亲肤",
-      "parent_id": 0,
-      "sort_order": 5,
-      "show_index": 4,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/003e1d1289f4f290506ac2aedbd09d35.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/28a685c96f91584e7e4876f1397767db.png",
-      "img_url": "//nos.netease.com/yanxuan/135113d6a43536b717063413fa24d69a.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/622c8d79292154017b0cbda97588a0d7.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "贴身的，要亲肤"
-    },
-    {
-      "id": 1011000,
-      "name": "婴童",
-      "keywords": "",
-      "front_desc": "爱，从心开始",
-      "parent_id": 0,
-      "sort_order": 7,
-      "show_index": 6,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/7dc78383e44df530f543659a977740de.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/1ba9967b8de1ac50fad21774a4494f5d.png",
-      "img_url": "//nos.netease.com/yanxuan/8ab3c73fe90951a942e8b06d848f8743.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/9cc0b3e0d5a4f4a22134c170f10b70f2.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "爱，从心开始"
-    },
-    {
-      "id": 1012000,
-      "name": "杂货",
-      "keywords": "",
-      "front_desc": "解忧，每个烦恼",
-      "parent_id": 0,
-      "sort_order": 8,
-      "show_index": 7,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/d233a1a9060a22e8eb0e2b326252eece.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/c2a3d6349e72c35931fe3b5bcd0966be.png",
-      "img_url": "//nos.netease.com/yanxuan/a0c91ae573079830743dec6ee08f5841.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/547853361d29a37282f377b9a755dd37.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "解忧，每个烦恼"
-    },
-    {
-      "id": 1013001,
-      "name": "洗护",
-      "keywords": "",
-      "front_desc": "亲肤之物，严选天然",
-      "parent_id": 0,
-      "sort_order": 6,
-      "show_index": 5,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/ef8c49f8c92d1f86eb76dec0b5bc7cef.jpg",
-      "icon_url": "http://yanxuan.nosdn.127.net/9fe068776b6b1fca13053d68e9c0a83f.png",
-      "img_url": "//nos.netease.com/yanxuan/14bb4a29498a0f93a1ea001f26fea1dd.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/1526ab0f5982722adbc8726f9f2a338c.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "亲肤之物，严选天然"
-    },
-    {
-      "id": 1019000,
-      "name": "志趣",
-      "keywords": "",
-      "front_desc": "爱好，点缀生活",
-      "parent_id": 0,
-      "sort_order": 10,
-      "show_index": 9,
-      "is_show": 1,
-      "banner_url": "http://yanxuan.nosdn.127.net/99107fbd76eb66cd537213e478189ae1.png",
-      "icon_url": "http://yanxuan.nosdn.127.net/7093cfecb9dde1dd3eaf459623df4071.png",
-      "img_url": "//nos.netease.com/yanxuan/72de912b6350b33ecf88a27498840e62.jpg",
-      "wap_banner_url": "http://yanxuan.nosdn.127.net/1706e24a5e605870ba3b37ff5f49aa18.png",
-      "level": "L1",
-      "type": 0,
-      "front_name": "周边精品，共享热爱"
-    }
   ]
 }
 ```

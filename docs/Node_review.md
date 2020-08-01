@@ -1143,10 +1143,10 @@ class Auth {
                 // 校验令牌合法 不合法抛出异常
             }catch(error){
                  if (error.name == 'TokenExpiredError') {
-          errMsg = 'token令牌已经过期'
-        }
-        throw new ForbidenException(errMsg)
-            }
+                  errMsg = 'token令牌已经过期'
+                     }
+                    throw new ForbidenException(errMsg)
+                }
         }
         ctx.auth = {
             uid:decode.uid,
@@ -1665,3 +1665,41 @@ _request(url, resolve, reject, data = {}, method = 'GET', noRefetch = false) {
 
 ```
 
+
+
+### 配置webpack 支持ES6
+
+1. 安装`webpack`
+
+   ```bash
+   npm i -D webpack webpack-cli
+   ```
+
+2. 安装 相关依赖
+
+   ```json
+   "devDependencies": {
+       "@babel/core": "^7.6.2",
+       "@babel/node": "^7.6.2",
+       "@babel/preset-env": "^7.6.2",
+       "babel-loader": "^8.0.6",
+       "clean-webpack-plugin": "^3.0.0",
+       "cross-env": "^6.0.3",
+       "nodemon": "^1.19.3",
+       "npm-run-all": "^4.1.5",
+       "rimraf": "^3.0.0",
+       "terser-webpack-plugin": "^2.1.2",
+       "webpack": "^4.41.0",
+       "webpack-cli": "^3.3.9",
+       "webpack-merge": "^4.2.2",
+       "webpack-node-externals": "^1.7.2"
+     }
+   ```
+
+3. 根路径下创建`webpack.config.js`
+
+   ```js
+   
+   ```
+
+   
