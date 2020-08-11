@@ -1,206 +1,156 @@
 ## 前端
 
-### 阅读器引擎解析流程
-1. 解压epub文件夹
-2. 找到`META-INF`下面的container.xml文件,对应的`rootfile`对应路径。
-3. 找到`OEBPS`下面的content.opf, 解析opf文件
+前端项目目录结构
 
-**opf文件内容**
+```js
 
-![](https://image.yangxiansheng.top/img/QQ截图20200311103555.png?imagelist)
-<metadata> 对应的电子书的信息
-
-![](https://image.yangxiansheng.top/img/QQ截图20200311103605.png?imagelist)
-<manifest>对应的电子书的资源文件信息
-
-![](https://image.yangxiansheng.top/img/QQ截图20200311103611.png?imagelist)
-<spine> 对应的电子书的目录信息排序
-
-<guide>指南信息
-
-toc.npx epub文件的目录信息
-
-###  epub标准
-
-![](https://image.yangxiansheng.top/img/QQ截图20200311104225.png?imagelist)
-
-### 准备工作
-
-1. 字体文件 字体图标引入项目
-
-   ![](https://image.yangxiansheng.top/img/QQ截图20200312142017.png?imagelist)
-
-   ![](https://image.yangxiansheng.top/img/QQ截图20200312141602.png?imagelist)
-
-   引入图标和字体后引入`全局样式`和`reset.styl`,然后再`main.js`上使用
-
-   
-
-   ![](https://image.yangxiansheng.top/img/QQ截图20200312141638.png?imagelist)
-
-   
-
-2. 安装相关依赖包
-
-   `epubjs`
-
-   `` good-storage``
-
-   ` axios`
-
-vuex vuerouter使用基本细节之前总结过
+```
 
 
 
+### 音乐播放器部分
+
+#### 需求分析
+
+![](https://image.yangxiansheng.top/img/20200804204948.png?imagelist)
+
+#### 榜单歌曲列表获取
+
+首先调用服务器上网易云的API获取榜单数据，进入播放器页面进行调用，用解构的方式取出需要的数据，组成一个新对象。最后push到定义的数组里面去
+
+```js
+ const {id, name, ar: [{name: singer}], al: {name: album, picUrl}} = item
+      this.playMusicItem = {
+        id,
+        name,
+        singer,
+        picUrl,
+        album,
+        index,
+        src: `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+      }
+
+```
+
+
+
+#### 音乐播放器主要功能实现
+
+ **第一步就是用vuex存放数据**,比如**歌曲暂停还是播放**,播放列表数组,当前歌曲,**当前播放模式**等。然后就是开始写业务，**首先在created钩子里面new一个后台音乐播放器实例**(getBackgroundAudioManager)。然后将页面骨架初步写完。**点击模式**时通过computed改变图标，然后调用不同的Action生成不同模式下的歌曲列表,比如随机播放,这个时候我就需要书写一个洗牌算法把里面的歌曲列表打乱，最后再提交修改。
+
+然后最重要的是**监听点击上一首下一首或者播放暂停的时候**先去调用微信的audio暂停播放这些API，然后要去实时修改vuex里面数据，**比如我点击下一首**,这个要做的事: 1.将歌曲当前时间置为0 2.将歌曲在播放列表里面的index+1,然后修改vuex的currentSong,最后是调用微信API封装的播放方法，监听到歌曲能够播放就讲isPlay设为true,调用播放钩子，然后设置一下显示的时间 
+
+
+
+洗牌算法
+
+```js
+function getRandomInt (min, max) {
+  // 取min-max的数据
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+export function shuffle (arr) {
+  // 当前数组值与取到的随机数组值交换 从而打乱数据
+  let _arr = arr.slice()
+  for (let i = 0; i < _arr.length; i++) {
+    let j = getRandomInt(0, i)
+    let t = _arr[i]
+    _arr[i] = _arr[j]
+    _arr[j] = t
+  }
+  return _arr
+}
+```
+
+切换播放模式部分代码
+
+```js
+ changeMode () {
+      const mode = (this.mode + 1) % 3
+      this.setPlayMode(mode)
+      let list = null
+      if (this.mode === playMode.random) {
+        list = shuffle(this.sequencelist)
+        setTimeout(() => {
+          this.setPlaylist(list)
+        }, 300)
+      } else {
+        list = this.sequencelist
+        this.setPlaylist(list)
+      }
+    }
+```
 
 
 
 
-### 阅读器组需求分析
+
+### 阅读器部分
+
+#### 需求分析
 
 ![](https://image.yangxiansheng.top/img/QQ截图20200312141124.png?imagelist)
 
 
 
+#### **渲染和解析电子书**
 
-
-vuex语法糖
+首先要访问在`nginx`上存放的`epub`资源,然后通过`epubjs`进行解析渲染
 
 ```js
-import {mapGetters, mapMutations, mapActions}from 'vuex'
+<script>
+  //引入epubjs库  
+import { mapMutations, mapGetters } from "vuex";
+import Epub from "epubjs";
+global.ePub = Epub;
+export default {
+  name: "",
+  props: [""],
+  data() {
+    return {
+      Bookfilename: ""
+    };
+  },
+//首次渲染时将参数传递 然后设置vuex数据 之后调用init方法
+  mounted() {
+    this.Bookfilename = this.$route.params.fileName;
+    this.setFileName(this.Bookfilename);
+    this.initEpub();
+  },
 
-## getters.js
-export const state = state => state.fileName
-
-...mapGetters([
-    'fileName'
-])
-
-
-## MUtations
-import * as types from 'mutation-types'
-
-const mutations = {
-    [types.SET_FILENAME](state,filename){
-        state.fileName = filename
+  methods: {
+    ...mapGetters(["fileName"]),
+    ...mapMutations({
+      setFileName: "SET_FILENAME"
+    }),
+    initEpub() {
+      //拼接字符串  
+      const url = "https://store.yangxiansheng.top/epub/";
+      let BookUrl = url + `${this.Bookfilename}.epub`;
+      window.console.log(BookUrl);
+      // 解析电子书路径
+      this.book = new Epub(BookUrl);
+      // 渲染关键钩子 拿到rendition对象
+      this.redition = this.book.renderTo("read", {
+        //宽高为书籍宽高  
+        width: innerWidth,
+        height: innerHeight,
+        //兼容微信  
+        method: "default"
+      });
+      this.redition.display();
     }
-}
-export default mutations
-
-...mapMutations({
-    setFileName:'SET_FILENAME'
-})
-调用 this.setFileName(filename)
-
-
-## actions
-import * as types from 'mutation-types'
-export const selectFileName({commit,state},song){
-    commit(type.SET_PLAYLIST,playlist)
-    ...
-}
-
-...mapActions([
-    'selectFileName'
-])
-  调用 this.selectFileName()
+  }
+};
 ```
 
-### 开发流程
+**使用epubjs解析关键**
 
-- **渲染和解析电子书**
+> 1. dom上挂载read节点
+> 2. 创建epub实例 ，渲染API为`rederTo('dom',attribute)`
+> 3. 显示渲染内容  `display()`
 
-  首先要访问在`nginx`上存放的`epub`资源,然后通过`epubjs`进行解析渲染
-
-  ```js
-  <script>
-    //引入epubjs库  
-  import { mapMutations, mapGetters } from "vuex";
-  import Epub from "epubjs";
-  global.ePub = Epub;
-  export default {
-    name: "",
-    props: [""],
-    data() {
-      return {
-        Bookfilename: ""
-      };
-    },
-  //首次渲染时将参数传递 然后设置vuex数据 之后调用init方法
-    mounted() {
-      this.Bookfilename = this.$route.params.fileName;
-      this.setFileName(this.Bookfilename);
-      this.initEpub();
-    },
-  
-    methods: {
-      ...mapGetters(["fileName"]),
-      ...mapMutations({
-        setFileName: "SET_FILENAME"
-      }),
-      initEpub() {
-        //拼接字符串  
-        const url = "https://store.yangxiansheng.top/epub/";
-        let BookUrl = url + `${this.Bookfilename}.epub`;
-        window.console.log(BookUrl);
-        // 解析电子书路径
-        this.book = new Epub(BookUrl);
-        // 渲染关键钩子 拿到rendition对象
-        this.redition = this.book.renderTo("read", {
-          //宽高为书籍宽高  
-          width: innerWidth,
-          height: innerHeight,
-          //兼容微信  
-          method: "default"
-        });
-        this.redition.display();
-      }
-    }
-  };
-  ```
-
-  **使用epubjs解析关键**
-
-  > 1. dom上挂载read节点
-  > 2. 创建epub实例 ，渲染API为`rederTo('dom',attribute)`
-  > 3. 显示渲染内容  `display()`
-
-- **设置字号和字体**
-
-首先书写菜单面板样式 在vuex定义好一个守卫控制面板显示隐藏和现实,然后就是控制面板显示与隐藏
-
-之前定义过点击书籍屏幕就会触发事件,所以在事件中定义逻辑
-
-```js
-    toggleMenu() {
-      this.setmenu(!this.menuVisable);
-      if (this.menuVisable) {
-        this.setSelectNum(-1);
-        this.setfamilyVisible(false);
-      }
-    },
-      
-```
-
-翻页时也需要收起面板
-
-```js
-  nextPage() {
-      if (this.redition) {
-        this.redition.next();
-        this.hidemenu();
-        this.setfamilyVisible(false);
-      }
-    },
-```
-
-控制好了面板的显示与隐藏,然后添加设置字体和字号的组件
-
-效果图：
-
-![](https://image.yangxiansheng.top/img/QQ截图20200314220029.png?imagelist)
-
-定义vuex守卫 分别显示下面四个子菜单，然后就是设置字号和字体的功能实现了
+#### **设置字号和字体**
 
 <h3>字号</h3>
 引入vant-slide帮助快速搭建滑块,监听`@change`事件,设置字号大小阈值为`12`到`24`
@@ -228,37 +178,6 @@ onChange(value) {
 ```
 
 设置字体大小后，发现了一个问题,那就是当我们再次进入阅读器时，之前设置的字体大小重新刷新了,所以我根据此问题引入了缓存`web-storage-cache`
-
-localStorage关键思想
-
-```js
-1. 定义一个book空对象 如果取不到值就设置book[key] = value
-例子：三个参数(filename,key,vakue) 
-
-setBookObject('红楼梦',font-size,value)--- book[font-size] =value
-{
-    font-size:value
-}
-用filename进行判断是否有值
-
-2.
-getBookObject(filename,key){
-    if(getLocalStorage(`${filename}-info`)){
-        return getLocalStorage(`${filename}-info`)[key]
-    }else{
-        return null
-    }
-}
-例子 : 获取'红楼梦'的font-size  
-return '红楼梦-info'[font-size]  
-如果之前定义好了setObject 这条信息将指向
-{
-    font-size:value
-}
-拿到value的值
-
-这样做的好处： 存入多个属性对应一个key
-```
 
 使用该方法书写业务代码
 
@@ -333,11 +252,11 @@ setfamily(font) {
 
 
 
-- **更换主题**
+#### **更换主题**
 
-  更换主题这里思路大致这样：
+更换主题这里思路大致这样：
 
-  > 通过点击面板选择主题的名字，初始化阅读器时注册主题文件，然后通过动态添加css文件覆盖样式的方式实现主题切换
+> 通过点击面板选择主题的名字，初始化阅读器时注册主题文件，然后通过动态添加css文件覆盖样式的方式实现主题切换
 
 <h3>注册主题文件
 
@@ -418,33 +337,33 @@ export function addLink(href) {
 
 ![](https://image.yangxiansheng.top/img/QQ截图20200314223526.png?imagelist)
 
-- 切换进度条
+#### 切换进度条
 
-  切换进度条关键分页算法(简易) 设置750个字符一页,书一行的宽度大于375,那么这也页就大于750个字    `this.book.loctions.generate`拿到页数
+切换进度条关键分页算法(简易) 设置750个字符一页,书一行的宽度大于375,那么这也页就大于750个字    `this.book.loctions.generate`拿到页数
 
-  ```js
-  this.book.ready(),then(()=>{
-      return this.book.locations.generate(750*(window.innerWidth/375)*(getFontsize(this.fileName) / 16))
-  }).then(()=>{
-      this.setProgressFinished(true) //加载完cif的标志设为true
-  })
-  ```
+```js
+this.book.ready(),then(()=>{
+    return this.book.locations.generate(750*(window.innerWidth/375)*(getFontsize(this.fileName) / 16))
+}).then(()=>{
+    this.setProgressFinished(true) //加载完cif的标志设为true
+})
+```
 
-  <h3>
-      拖动换章
-  </h3>
+<h3>
+    拖动换章
+</h3>
 
-  监听滑块的时间中 拿到`cfifromPercentage(vaule/100)`当前进度条内容，然后就display()出页面即可
+监听滑块的时间中 拿到`cfifromPercentage(vaule/100)`当前进度条内容，然后就display()出页面即可
 
-  ![](https://image.yangxiansheng.top/img/QQ截图20200315104639.png?imagelist)
+![](https://image.yangxiansheng.top/img/QQ截图20200315104639.png?imagelist)
 
-  
 
-  
 
-  <h3>上一章</h3>
+
+
+<h3>上一章</h3>
 定义vuex守卫 `section`，默认为零，通过epub的`this.book.section(vaule).href`获取到章节内容对象,然后进行显示.  
-  
+
 ```js
   preveSection(){
       if(this.BookValiable && this.section > 0){  
@@ -472,47 +391,24 @@ nextSection(){
 }
 ```
 
+#### 目录
 
-每次章节跳转的时候 都去获取当前章节的进度条信息
+<h3>获取图片封面</h3>
+`this.book.loaded.cover` `this.book.archive.createUrl`
 
-通过`this.Current.rendition.currentLocation`获取到位置信息
-
-然后再 获取进度条信息(百分比数字 double类型)
+通过这两个函数获取
 
 ```js
-//根据cfi 获取章节进度 百分比
-this.currentBook.rendition.locations.percentageFromCfi(Locationinfo.start.cfi)
+this.book.loaded.cover.then((cover)=>{
+    this.book.archive.createUrl(cover).then(url=>{
+        this.setCover(url)
+        console.log(url)
+    })
+})
 ```
 
-
-
-**获取当前章节名字**:`this.CurrentBook.navigation.get(sectionInfo.href).label`
-
-<h3>刷新缓存章节</h3>
-定义storage`getprogress saveProgress`当拖动进度条时或者点击下一章时保存当前的进度值 (value, 或者 **this.book.locations.precentageFromCfi(Currentloaction.start.cfi)**----当前的阅读进度(百分比))
-
-
-
-
-
-- 目录
-
-  <h3>获取图片封面</h3>
-  `this.book.loaded.cover` `this.book.archive.createUrl`
-  
-  通过这两个函数获取
-  
-  ```js
-  this.book.loaded.cover.then((cover)=>{
-      this.book.archive.createUrl(cover).then(url=>{
-          this.setCover(url)
-          console.log(url)
-      })
-  })
-  ```
-  
-  <h3>获取书籍的基本信息</h3>
-  `this.book.loaded.metadata.then((meta)=>{})`
+<h3>获取书籍的基本信息</h3>
+`this.book.loaded.metadata.then((meta)=>{})`
 
 ```js
 metadata.title 标题
@@ -890,3 +786,8 @@ server
 
 
   // *todo: 1.math.ceil(time/60) 取到分钟 2.获取进度 3. 获取封面 解析电子书时获取封面图（）*
+
+
+
+
+
